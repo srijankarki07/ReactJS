@@ -1,0 +1,339 @@
+.App {
+  text-align: center;
+  font-family: monospace;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.container {
+  width: 100%;
+}
+
+.container .list {
+  display: flex;
+  margin: 20px auto;
+}
+
+.container .list .id {
+  flex-basis: 10%;
+}
+
+.container .list .index {
+  flex-basis: 5%;
+}
+
+.container .list .name {
+  flex-basis: 50%;
+  text-align: justify;
+  margin: auto;
+}
+
+.container .list .symbol {
+  flex-basis: 20%;
+  text-align: justify;
+}
+
+.stocks-container .stocks-item {
+  display: flex;
+  margin: 10px auto;
+}
+
+.stocks-container .stocks-item.heading {
+  color: #21a921;
+}
+
+.stocks-container .stocks-item .sn {
+  flex-basis: 5%;
+}
+.stocks-container .stocks-item .sname {
+  flex-basis: 58%;
+}
+.stocks-container .stocks-item .symbol {
+  flex-basis: 10%;
+}
+.stocks-container .stocks-item .sid {
+  flex-basis: 10%;
+}
+
+/* .delete-modal-container {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  background-color: #ffffff73;
+} */
+
+/* .delete-modal-container .modal-body {
+  background-color: rgb(5, 48, 34);
+  padding: 15px 30px;
+  border-radius: 8px;
+} */
+
+.inputbox {
+  border-radius: 8px;
+  background-color: #04aa6d30;
+  border: #dee4e2;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 6px 6px;
+  cursor: pointer;
+}
+.yearandopeneing {
+  border-radius: 8px;
+  background-color: #04aa6d30;
+  border: #dee4e2;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 6px 6px;
+  cursor: pointer;
+}
+
+.deposits {
+  border-radius: 8px;
+  background-color: #048caa30;
+  border: #dee4e2;
+  color: white;
+  padding: 15px 22px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 6px 4px;
+  cursor: pointer;
+}
+.answer {
+  border-radius: 8px;
+  background-color: #048caa30;
+  border: #dee4e2;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 36px;
+  margin: 6px 6px;
+  cursor: pointer;
+}
+.bill-input-container {
+  display: flex;
+  margin: 10px auto;
+  width: 100%;
+}
+
+.bill-input-container .parti {
+  border-radius: 8px;
+  /* background-color: #04aa6d30; */
+  border: #dee4e2;
+  color: #21a921;
+  padding: 15px 32px;
+  text-align: justify;
+  text-decoration: dotted;
+  display: inline-block;
+  font-size: 16px;
+  margin: 6px 6px;
+  cursor: pointer;
+  flex-basis: 50%;
+}
+
+.bill-input-container .enterate {
+  border-radius: 8px;
+  background-color: #04aa6d30;
+  border: #dee4e2;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 6px 6px;
+  cursor: pointer;
+  flex-basis: 25%;
+}
+.bill-input-container .quant {
+  border-radius: 8px;
+  background-color: #04aa6d30;
+  border: #dee4e2;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 6px 6px;
+  cursor: pointer;
+  flex-basis: 5%;
+}
+
+.bill-input-container .add {
+  background-image: linear-gradient(
+    92.88deg,
+    #455eb5 9.16%,
+    #5643cc 43.89%,
+    #673fd7 64.72%
+  );
+  border-radius: 8px;
+  border-style: none;
+  box-sizing: border-box;
+  color: #ffffff;
+  cursor: pointer;
+  flex-shrink: 0;
+  font-family: "Inter UI", "SF Pro Display", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+    sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  height: 4.5rem;
+  padding: 0 1.6rem;
+  text-align: center;
+  text-shadow: rgba(0, 0, 0, 0.25) 0 3px 8px;
+  transition: all 0.5s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.bill-input-container .add:hover {
+  box-shadow: rgba(80, 63, 205, 0.5) 0 1px 30px;
+  transition-duration: 0.1s;
+}
+
+@media (min-width: 768px) {
+  .bill-input-container .add {
+    padding: 0 2.6rem;
+  }
+}
+
+.bill-container {
+  display: flex;
+  margin: 20px auto;
+  width: 100%;
+}
+
+.bill-container .sn {
+  flex-basis: 2%;
+  border-radius: 8px;
+  background-color: #4de17c;
+  border: #dee4e2;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 6px 6px;
+  cursor: pointer;
+}
+.bill-container .par {
+  border-radius: 8px;
+  background-color: #4de17c;
+  border: #dee4e2;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: nones;
+  display: inline-block;
+  font-size: 16px;
+  margin: 6px 6px;
+  cursor: pointer;
+  flex-basis: 60%;
+}
+.bill-container .rate {
+  border-radius: 8px;
+  background-color: #4de17c;
+  border: #dee4e2;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 6px 6px;
+  cursor: pointer;
+  flex-basis: 8%;
+}
+.bill-container .qty {
+  border-radius: 8px;
+  background-color: #4de17c;
+  border: #dee4e2;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 6px 6px;
+  cursor: pointer;
+  flex-basis: 8%;
+}
+
+.bill-container .total {
+  border-radius: 8px;
+  background-color: #4de17c;
+  border: #dee4e2;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 6px 6px;
+  cursor: pointer;
+  flex-basis: 10%;
+}
+
+.entry-item {
+  display: flex;
+  padding: 10px;
+}
+
+.entry-item .index {
+  flex-basis: 5%;
+  text-align: center;
+}
+.entry-item .part {
+  flex-basis: 60%;
+  text-align: center;
+}
+.entry-item .rat {
+  flex-basis: 6%;
+}
+.entry-item .quty {
+  flex-basis: 18%;
+}
+
+.entry-item .tot {
+  flex-basis: 10%;
+}
+
+/* .bill-input-container {
+  background-color: #048caa30;
+} */
+
+.Gtot {
+  border-radius: 8px;
+  background-color: rgba(127, 255, 212, 0.42);
+  border: #dee4e2;
+  padding: 15px 32px;
+  text-align: left;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 6px 6px;
+  cursor: pointer;
+  flex-basis: 10%;
+}
