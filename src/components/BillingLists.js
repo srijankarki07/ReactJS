@@ -15,7 +15,12 @@ const BillingList = ({ stocks }) => {
     if (e.code === "Enter") {
       setEntries([
         ...entries,
-        { id: entries.length + 1, particular, rate, quantity },
+        {
+          id: entries.length + 1,
+          particular: particular.value,
+          rate,
+          quantity,
+        },
       ]);
       quantityRef.current?.focus();
     }
