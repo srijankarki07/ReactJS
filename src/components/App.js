@@ -8,7 +8,7 @@ import CashFlowCalculator from "./CashFlowCalculator";
 import { useState } from "react";
 import BillingList from "./BillingLists";
 import { STOCKS } from "./constants";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Link } from "react-router-dom";
 
 function App() {
   const [whatToShow, setWhatToShow] = useState("");
@@ -108,10 +108,25 @@ function App() {
 
         {whatToShow === "billinglist" && <BillingList stocks={stocks} />} */}
 
-        <ToastContainer />
-        {/* <SecondComponent /> */}
-        {/* <CashFlowCalculator />
-        <NepseStocks name="STOCKS" /> */}
+        <Routes>
+          <Route
+            path="/nepseStocks"
+            element={<NepseStocks setStocks={setStocks} stocks={stocks} />}
+          />
+          <Route
+            path="/billinglist"
+            element={<BillingList stocks={stocks} />}
+          />
+          <Route path="/" element={<CashFlowCalculator />} />
+          <Route
+            path="*"
+            element={
+              <div>
+                <h1>Page Not Found</h1>
+              </div>
+            }
+          />
+        </Routes>
       </header>
     </div>
   );
