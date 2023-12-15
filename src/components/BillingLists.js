@@ -37,17 +37,21 @@ const BillingList = ({ stocks }) => {
           className="parti"
           options={stocks.map((s) => ({
             label: `${s.securityName} ${s.symbol} ${s.securityId}`,
-            value: s.symbol,
+            value: s.securityName,
           }))}
           value={particular}
           onChange={handleStockChange}
+          isClearable={true}
+          // isMulti={true}
+          // isDisabled={true}
+
           // getOptionLabel={(option) => option.securityName}
           // getOptionValue={(option) => option.symbol}
         >
           {/* {stocks.map((s) => (
             <option
               key={s.securityId}
-              value={`${s.securityName}${" "}${"["}${s.symbol}${"]"}`}
+              value={`${s.securityName}$ ${"["}${s.symbol}${"]"}`}
             >
               {s.securityName} {" [ "}
               {s.symbol}
