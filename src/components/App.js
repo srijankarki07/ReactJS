@@ -53,7 +53,6 @@ function App() {
     <div className="App">
       <header className="App-header">
         {/* <p>Designed by Srijan</p> */}
-
         <input
           id="whatToShow"
           name="whatToShow"
@@ -64,7 +63,7 @@ function App() {
           {BUTTONS.map((a) => (
             <button
               key={a.key}
-              onclick={(e) => setWhatToShow(a.key)}
+              onClick={(e) => setWhatToShow(a.key)}
               className={a.key === whatToShow ? "selected" : ""}
             >
               {a.title}
@@ -81,7 +80,6 @@ function App() {
         <button onClick={(e) => setWhatToShow("billinglist")}>
           Billing List
         </button> */}
-
         {/* <button onClick={(e) => setWhatToShow("first")}>First Component</button> */}
         {/* {whatToShow === "first" && (
           <FirstComponent
@@ -107,7 +105,12 @@ function App() {
         )}
 
         {whatToShow === "billinglist" && <BillingList stocks={stocks} />} */}
-
+        <ToastContainer />
+        {/* <a href="/nepseStocks">Nepse Stocks</a> */}
+        <a href="/billinglist"> Billing List</a>
+        <a href="/cashFlow">Cash Flow </a>
+        <a href="/first"> First Component</a>
+        <Link to="/nepseStocks"> Nepse Stocks</Link>
         <Routes>
           <Route
             path="/nepseStocks"
@@ -131,5 +134,4 @@ function App() {
     </div>
   );
 }
-
 export default App;
