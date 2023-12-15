@@ -337,3 +337,17 @@
   cursor: pointer;
   flex-basis: 10%;
 }
+
+.selected {
+  border-radius: 8px;
+  background-color: #04aa6d30;
+  border: #dee4e2;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 6px 6px;
+  cursor: pointer;
+}
