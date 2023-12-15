@@ -3,7 +3,7 @@ import { STOCKS } from "./constants";
 import "./App.css";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import { toast } from "react-toastify";
-const NepseStocks = ({ setWhatToShow, BUTTON, setStocks, stocks }) => {
+const NepseStocks = ({ setStocks, stocks }) => {
   const [securityName, setSecurityName] = useState("");
   const [securityId, setSecurityId] = useState("");
   const [symbol, setSymbol] = useState("");
