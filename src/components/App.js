@@ -8,7 +8,7 @@ import CashFlowCalculator from "./CashFlowCalculator";
 import { useState } from "react";
 import BillingList from "./BillingLists";
 import { STOCKS } from "./constants";
-import { Route, Routes, Link } from "react-router-dom";
+import { Route, Routes, Link, NavLink } from "react-router-dom";
 
 function App() {
   const [whatToShow, setWhatToShow] = useState("");
@@ -111,6 +111,9 @@ function App() {
         <a href="/cashFlow">Cash Flow </a>
         <a href="/first"> First Component</a>
         <Link to="/nepseStocks"> Nepse Stocks</Link>
+        <NavLink to="/billinglist" activeClassName="navlink">
+          NavLink Billing List
+        </NavLink>
         <Routes>
           <Route
             path="/nepseStocks"
