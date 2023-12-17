@@ -118,12 +118,29 @@ function App() {
           <Route
             path="/nepseStocks"
             element={<NepseStocks setStocks={setStocks} stocks={stocks} />}
+          />{" "}
+          <Route
+            path="/first"
+            element={
+              <FirstComponent
+                name="Test"
+                courseName={"MERN"}
+                age={23}
+                isStudent={true}
+                //objects
+                details={{ address: "Kathmandu", bloodGroup: "O +" }}
+                //array
+                subjects={["mongodb", "ExpressJS", "ReactJS", "NodeJS"]}
+                square={(x) => x * x}
+              />
+            }
           />
           <Route
             path="/billinglist"
             element={<BillingList stocks={stocks} />}
           />
           <Route path="/" element={<CashFlowCalculator />} />
+          <Route path="/cashFlow" element={<CashFlowCalculator />} />
           <Route
             path="*"
             element={
