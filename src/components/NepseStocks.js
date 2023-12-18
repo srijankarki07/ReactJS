@@ -1,8 +1,9 @@
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { STOCKS } from "./constants";
 import "./App.css";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import { toast } from "react-toastify";
+import { SampleContext } from "./App";
 const NepseStocks = ({ setStocks, stocks }) => {
   const [securityName, setSecurityName] = useState("");
   const [securityId, setSecurityId] = useState("");
@@ -11,6 +12,9 @@ const NepseStocks = ({ setStocks, stocks }) => {
   const [selectedStocks, setSelectedStocks] = useState("");
   const [confimDelete, setConfirmDelete] = useState(false);
   const [searchStock, setSearchStock] = useState(" ");
+
+  const testTheProvider = useContext(SampleContext);
+  console.log(SampleContext, "check for Nepse Stocks");
 
   const [foundStocks, setFoundStocks] = useState(stocks);
 
