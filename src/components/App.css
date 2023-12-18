@@ -364,8 +364,8 @@
   display: flex;
   flex-direction: column;
   border-radius: 20px;
-  background-color: #4de17c;
-  height: 100vh;
+  background-color: #0fb438;
+  height: 200vh;
 }
 
 .body #sidebar .sidebar-option {
