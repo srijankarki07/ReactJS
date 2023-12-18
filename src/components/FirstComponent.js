@@ -1,7 +1,7 @@
-import { useContext, useState } from "react";
+import { useEffect, useState } from "react";
 import { AiFillDelete } from "react-icons/ai";
 import { FaRegEdit } from "react-icons/fa";
-import { SampleContext } from "../contexts/SampleContext";
+import { useSample } from "../contexts/SampleContext";
 
 const FirstComponent = ({
   name,
@@ -30,9 +30,15 @@ const FirstComponent = ({
   const [selectedIndex, setSelectedIndex] = useState(-1);
 
   const [delalrt, setdelalrt] = useState(false);
+  const [testLocal, setTestLocal] = useState(" ");
 
-  const testTheProvider = useContext(SampleContext);
-  console.log(testTheProvider, "check for fisrt component");
+  const testTheProvider = useSample();
+  console.log(testTheProvider, "check for first component");
+
+  useEffect(() => {
+    const testtt = localStorage.getItem("test");
+    setTestLocal(testtt);
+  }, []);
 
   return (
     // providing an id to uniquely identify the components
@@ -89,6 +95,7 @@ const FirstComponent = ({
           </button>
         )}
       </p>
+      <h1>{testLocal}</h1>
       <h2>{testTheProvider.sampleState.test}</h2>
       <button id="test" onClick={(e) => testTheProvider.updateTest(subject)}>
         Update Context Value(Test With subject)
