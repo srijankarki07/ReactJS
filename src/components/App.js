@@ -9,11 +9,14 @@ import { createContext, useState } from "react";
 import BillingList from "./BillingLists";
 import { STOCKS } from "./constants";
 import { Route, Routes, NavLink } from "react-router-dom";
+import { RiStockFill } from "react-icons/ri";
+import { IoCashOutline } from "react-icons/io5";
+import { RiBillLine } from "react-icons/ri";
+import { MdLooksOne } from "react-icons/md";
 
 export const SampleContext = createContext();
 
 function App() {
-  const [whatToShow, setWhatToShow] = useState("");
   const [stocks, setStocks] = useState(STOCKS);
 
   const BUTTONS = [
@@ -34,37 +37,41 @@ function App() {
           square={(x) => x * x}
         />
       ),
+      icon: <MdLooksOne />,
     },
     {
       title: "Nepse Stocks",
       key: "nepseStocks",
       path: "/nepseStocks",
       component: <NepseStocks setStocks={setStocks} stocks={stocks} />,
+      icon: <RiStockFill />,
     },
     {
-      title: "Cash Flow Calculator",
+      title: "Cash Flow Calc",
       path: "/cashFlow",
       key: "cashFlow",
       component: <CashFlowCalculator />,
+      icon: <IoCashOutline />,
     },
     {
       title: "Billing List",
       path: "/billinglist",
       key: "billinglist",
       component: <BillingList stocks={stocks} />,
+      icon: <RiBillLine />,
     },
   ];
 
   return (
     <div className="App">
-      <input
+      {/* <input
         id="whatToShow"
         name="whatToShow"
         value={whatToShow}
         onChange={(e) => setWhatToShow(e.target.value)}
-      />
+      /> */}
 
-      <span>
+      {/* <span>
         {BUTTONS.map((a) => (
           <button
             key={a.key}
@@ -74,7 +81,7 @@ function App() {
             {a.title}
           </button>
         ))}
-      </span>
+      </span> */}
       <div className="body">
         <div id="sidebar">
           {BUTTONS.map((a) => (
