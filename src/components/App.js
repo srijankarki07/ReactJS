@@ -20,6 +20,7 @@ function App() {
     {
       title: "First Component",
       key: "first",
+      path: "/first",
       component: (
         <FirstComponent
           name="Test"
@@ -37,15 +38,18 @@ function App() {
     {
       title: "Nepse Stocks",
       key: "nepseStocks",
+      path: "/nepseStocks",
       component: <NepseStocks setStocks={setStocks} stocks={stocks} />,
     },
     {
       title: "Cash Flow Calculator",
+      path: "/cashFlow",
       key: "cashFlow",
       component: <CashFlowCalculator />,
     },
     {
       title: "Billing List",
+      path: "/billinglist",
       key: "billinglist",
       component: <BillingList stocks={stocks} />,
     },
@@ -53,109 +57,47 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
-        {/* <p>Designed by Srijan</p> */}
-        <input
-          id="whatToShow"
-          name="whatToShow"
-          value={whatToShow}
-          onChange={(e) => setWhatToShow(e.target.value)}
-        />
-        <span>
-          {BUTTONS.map((a) => (
-            <button
-              key={a.key}
-              onClick={(e) => setWhatToShow(a.key)}
-              className={a.key === whatToShow ? "selected" : ""}
-            >
-              {a.title}
-            </button>
-          ))}
-        </span>
-        {BUTTONS.map((v) => v.key === whatToShow && v.component)}
-        {/* <button onClick={(e) => setWhatToShow("cashFlow")}>
-          Cash Flow Calculator
-        </button>
-        <button onClick={(e) => setWhatToShow("nepseStocks")}>
-          Nepse Stock
-        </button>
-        <button onClick={(e) => setWhatToShow("billinglist")}>
-          Billing List
-        </button> */}
-        {/* <button onClick={(e) => setWhatToShow("first")}>First Component</button> */}
-        {/* {whatToShow === "first" && (
-          <FirstComponent
-            name="Test"
-            courseName={"MERN"}
-            age={23}
-            isStudent={true}
-            //objects
-            details={{ address: "Kathmandu", bloodGroup: "O +" }}
-            //array
-            subjects={["mongodb", "ExpressJS", "ReactJS", "NodeJS"]}
-            square={(x) => x * x}
-          />
-        )}
-        {whatToShow === "cashFlow" && <CashFlowCalculator />}
-        {whatToShow === "nepseStocks" && (
-          <NepseStocks
-            setWhatToShow={setWhatToShow}
-            BUTTONS={BUTTONS}
-            setStocks={setStocks}
-            stocks={stocks}
-          />
-        )}
+      <input
+        id="whatToShow"
+        name="whatToShow"
+        value={whatToShow}
+        onChange={(e) => setWhatToShow(e.target.value)}
+      />
 
-        {whatToShow === "billinglist" && <BillingList stocks={stocks} />} */}
-        <ToastContainer />
-        {/* <a href="/nepseStocks">Nepse Stocks</a> */}
-        <a href="/billinglist"> Billing List</a>
-        <a href="/cashFlow">Cash Flow </a>
-        <a href="/first"> First Component</a>
-        <Link to="/nepseStocks"> Nepse Stocks</Link>
-        <NavLink to="/billinglist" activeClassName="navlink">
-          NavLink Billing List
-        </NavLink>
+      <span>
+        {BUTTONS.map((a) => (
+          <button
+            key={a.key}
+            onClick={(e) => setWhatToShow(a.key)}
+            className={a.key === whatToShow ? "selected" : ""}
+          >
+            {a.title}
+          </button>
+        ))}
+      </span>
+      <div className="body">
+        <div id="sidebar">
+          {BUTTONS.map((a) => (
+            <NavLink to={a.path} key={a.key} className="sidebar-option">
+              {a.title}
+            </NavLink>
           ))}
         </div>
         <div className="main-container">
           <SampleContext.Provider value={{ test: "Sample text" }}>
-        <Routes>
-          <Route
-            path="/nepseStocks"
-            element={<NepseStocks setStocks={setStocks} stocks={stocks} />}
-          />{" "}
-          <Route
-            path="/first"
-            element={
-              <FirstComponent
-                name="Test"
-                courseName={"MERN"}
-                age={23}
-                isStudent={true}
-                //objects
-                details={{ address: "Kathmandu", bloodGroup: "O +" }}
-                //array
-                subjects={["mongodb", "ExpressJS", "ReactJS", "NodeJS"]}
-                square={(x) => x * x}
+            <Routes>
+              {BUTTONS.map((a) => (
+                <Route path={a.path} key={a.key} element={a.component} />
+              ))}
+              <Route
+                path="*"
+                element={
+                  <div>
+                    <h1>Page Not Found</h1>
+                  </div>
+                }
               />
-            }
-          />
-          <Route
-            path="/billinglist"
-            element={<BillingList stocks={stocks} />}
-          />
-          <Route path="/" element={<CashFlowCalculator />} />
-          <Route path="/cashFlow" element={<CashFlowCalculator />} />
-          <Route
-            path="*"
-            element={
-              <div>
-                <h1>Page Not Found</h1>
-              </div>
-            }
-          />
-        </Routes>
+            </Routes>
           </SampleContext.Provider>
         </div>
       </div>
