@@ -1,17 +1,22 @@
-import { createContext, useDeferredValue, useReducer } from "react";
+import { useContext, createContext, useReducer } from "react";
 export const SampleContext = createContext();
 
 const sampleReducer = (state, action) => {
   switch (action.type) {
     case "UPDATE_TEST":
       state.test = action.payload;
+      //   localStorage.setItem("test", action.payload);
+      localStorage.setItem(
+        "testObject",
+        JSON.stringify({ name: "test", date: "today" })
+      );
       return state;
     default:
       return state;
   }
 };
 
-const SampleProvider = ({ childern }) => {
+const SampleProvider = ({ children }) => {
   const [sampleState, dispatch] = useReducer(sampleReducer, {
     test: "Sample Text",
   });
@@ -24,9 +29,10 @@ const SampleProvider = ({ childern }) => {
   };
   return (
     <SampleContext.Provider value={{ sampleState, updateTest }}>
-      {childern}
+      {children}
     </SampleContext.Provider>
   );
 };
 
 export default SampleProvider;
+export const useSample = () => useContext(SampleContext);
