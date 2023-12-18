@@ -1,9 +1,14 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { SampleContext } from "./App";
 
 const CashFlowCalculator = () => {
   const [ratE, setRatE] = useState(10);
   const [openingBalancE, setOpeningBalancE] = useState(0);
   const [yearlyDepositS, setYearlyDepositS] = useState([1000, 1000, 1000]);
+
+  const testTheProvider = useContext(SampleContext);
+  console.log(testTheProvider, "check for cashflow calculator");
+
   const cashFlowCalculator = (
     rate = 10,
     openingBalance = 0,

@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { AiFillDelete } from "react-icons/ai";
 import { FaRegEdit } from "react-icons/fa";
+import { SampleContext } from "./App";
 const FirstComponent = ({
   name,
   courseName,
@@ -30,7 +31,7 @@ const FirstComponent = ({
   const [delalrt, setdelalrt] = useState(false);
 
   const testTheProvider = useContext(SampleContext);
-  console.log(testTheProvider, "check");
+  console.log(testTheProvider, "check for fisrt component");
 
   return (
     // providing an id to uniquely identify the components

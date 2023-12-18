@@ -1,6 +1,7 @@
-import React, { useRef, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 // import { STOCKS } from "./constants";
 import Select from "react-select";
+import { SampleContext } from "./App";
 
 const BillingList = ({ stocks }) => {
   const [entries, setEntries] = useState([]);
@@ -10,6 +11,9 @@ const BillingList = ({ stocks }) => {
   const rateRef = useRef(null);
   const quantityRef = useRef(null);
   const addRef = useRef(null);
+
+  const testTheProvider = useContext(SampleContext);
+  console.log(testTheProvider, "check");
 
   const handlePressEnterAtQuantity = (e) => {
     if (e.code === "Enter") {
