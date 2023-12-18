@@ -29,6 +29,9 @@ const FirstComponent = ({
 
   const [delalrt, setdelalrt] = useState(false);
 
+  const testTheProvider = useContext(SampleContext);
+  console.log(testTheProvider, "check");
+
   return (
     // providing an id to uniquely identify the components
     <div id="myComponent" style={{ color: testBoolean ? "yellow" : "green" }}>

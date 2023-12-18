@@ -5,10 +5,12 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 // import SecondComponent from "./SecondComponent";
 import CashFlowCalculator from "./CashFlowCalculator";
-import { useState } from "react";
+import { createContext, useState } from "react";
 import BillingList from "./BillingLists";
 import { STOCKS } from "./constants";
-import { Route, Routes, Link, NavLink } from "react-router-dom";
+import { Route, Routes, NavLink } from "react-router-dom";
+
+export const SampleContext = createContext();
 
 function App() {
   const [whatToShow, setWhatToShow] = useState("");
@@ -114,6 +116,10 @@ function App() {
         <NavLink to="/billinglist" activeClassName="navlink">
           NavLink Billing List
         </NavLink>
+          ))}
+        </div>
+        <div className="main-container">
+          <SampleContext.Provider value={{ test: "Sample text" }}>
         <Routes>
           <Route
             path="/nepseStocks"
@@ -150,6 +156,12 @@ function App() {
             }
           />
         </Routes>
+          </SampleContext.Provider>
+        </div>
+      </div>
+      <header className="App-header">
+        <p>Designed by Srijan</p>
+        <ToastContainer />
       </header>
     </div>
   );
