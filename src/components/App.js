@@ -13,8 +13,7 @@ import { RiStockFill } from "react-icons/ri";
 import { IoCashOutline } from "react-icons/io5";
 import { RiBillLine } from "react-icons/ri";
 import { MdLooksOne } from "react-icons/md";
-
-export const SampleContext = createContext();
+import SampleProvider, { SampleContext } from "../contexts/SampleContext";
 
 function App() {
   const [stocks, setStocks] = useState(STOCKS);
@@ -91,7 +90,7 @@ function App() {
           ))}
         </div>
         <div className="main-container">
-          <SampleContext.Provider value={{ test: "Sample text" }}>
+          <SampleProvider value={{ test: "Sample text" }}>
             <Routes>
               {BUTTONS.map((a) => (
                 <Route path={a.path} key={a.key} element={a.component} />
@@ -105,7 +104,7 @@ function App() {
                 }
               />
             </Routes>
-          </SampleContext.Provider>
+          </SampleProvider>
         </div>
       </div>
       <header className="App-header">
