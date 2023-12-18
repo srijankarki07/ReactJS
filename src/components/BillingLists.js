@@ -1,7 +1,7 @@
 import React, { useContext, useRef, useState } from "react";
 // import { STOCKS } from "./constants";
 import Select from "react-select";
-import { SampleContext } from "./App";
+import { SampleContext } from "../contexts/SampleContext";
 
 const BillingList = ({ stocks }) => {
   const [entries, setEntries] = useState([]);

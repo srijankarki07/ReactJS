@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { SampleContext } from "./App";
+import { SampleContext } from "../contexts/SampleContext";
 
 const CashFlowCalculator = () => {
   const [ratE, setRatE] = useState(10);

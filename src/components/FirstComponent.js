@@ -1,7 +1,8 @@
 import { useContext, useState } from "react";
 import { AiFillDelete } from "react-icons/ai";
 import { FaRegEdit } from "react-icons/fa";
-import { SampleContext } from "./App";
+import { SampleContext } from "../contexts/SampleContext";
+
 const FirstComponent = ({
   name,
   courseName,

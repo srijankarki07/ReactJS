@@ -3,7 +3,7 @@ import { STOCKS } from "./constants";
 import "./App.css";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import { toast } from "react-toastify";
-import { SampleContext } from "./App";
+import { SampleContext } from "../contexts/SampleContext";
 const NepseStocks = ({ setStocks, stocks }) => {
   const [securityName, setSecurityName] = useState("");
   const [securityId, setSecurityId] = useState("");
