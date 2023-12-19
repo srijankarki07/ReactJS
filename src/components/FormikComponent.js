@@ -5,6 +5,7 @@ import { FaEdit, FaTrash } from "react-icons/fa";
 import { toast } from "react-toastify";
 import { SampleContext } from "../contexts/SampleContext";
 import { useFormik } from "formik";
+import { stockSchema } from "./stockSchematockSchema";
 
 const FormikComponent = ({ setStocks, stocks }) => {
   const [securityName, setSecurityName] = useState("");
@@ -21,7 +22,7 @@ const FormikComponent = ({ setStocks, stocks }) => {
       symbol: "",
       securityId: "",
     },
-    //   validationSchema:
+    validationSchema: stockSchema,
     onSubmit: (values) => {
       alert(JSON.stringify(formik.values));
     },
@@ -113,7 +114,9 @@ const FormikComponent = ({ setStocks, stocks }) => {
           placeholder="Enter Security Id"
           onChange={formik.handleChange}
           value={formik.values.securityId}
+          onBlur={formik.handleBlur}
         />
+        <span>{formik.errors.securityId}</span>
         <label htmlFor="securityName">Security Name</label>
 
         <input
@@ -124,6 +127,7 @@ const FormikComponent = ({ setStocks, stocks }) => {
           placeholder="Enter Security Name"
           onChange={formik.handleChange}
           value={formik.values.securityName}
+          onBlur={formik.handleBlur}
         />
 
         <label htmlFor="symbol">Symbol</label>
@@ -135,6 +139,7 @@ const FormikComponent = ({ setStocks, stocks }) => {
           placeholder="Enter Symbol"
           onChange={formik.handleChange}
           value={formik.values.symbol}
+          onBlur={formik.handleBlur}
         />
 
         <button
