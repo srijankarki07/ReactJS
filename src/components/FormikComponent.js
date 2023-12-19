@@ -5,7 +5,7 @@ import { FaEdit, FaTrash } from "react-icons/fa";
 import { toast } from "react-toastify";
 import { SampleContext } from "../contexts/SampleContext";
 import { useFormik } from "formik";
-import { stockSchema } from "./stockSchematockSchema";
+import { stockSchema } from "./stockSchema";
 
 const FormikComponent = ({ setStocks, stocks }) => {
   const [securityName, setSecurityName] = useState("");
@@ -116,7 +116,9 @@ const FormikComponent = ({ setStocks, stocks }) => {
           value={formik.values.securityId}
           onBlur={formik.handleBlur}
         />
-        <span>{formik.errors.securityId}</span>
+        {formik.touched.securityId && formik.errors.securityId && (
+          <span>{formik.errors.securityId}</span>
+        )}
         <label htmlFor="securityName">Security Name</label>
 
         <input
@@ -129,6 +131,9 @@ const FormikComponent = ({ setStocks, stocks }) => {
           value={formik.values.securityName}
           onBlur={formik.handleBlur}
         />
+        {formik.touched.securityName && formik.errors.securityName && (
+          <span>{formik.errors.securityName}</span>
+        )}
 
         <label htmlFor="symbol">Symbol</label>
         <input
@@ -141,6 +146,9 @@ const FormikComponent = ({ setStocks, stocks }) => {
           value={formik.values.symbol}
           onBlur={formik.handleBlur}
         />
+        {formik.touched.symbol && formik.errors.symbol && (
+          <span>{formik.errors.symbol}</span>
+        )}
 
         <button
           onClick={handleAddUpdateStocks}
