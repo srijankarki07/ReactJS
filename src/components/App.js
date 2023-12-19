@@ -5,7 +5,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 // import SecondComponent from "./SecondComponent";
 import CashFlowCalculator from "./CashFlowCalculator";
-import { createContext, useState } from "react";
+import { useState } from "react";
 import BillingList from "./BillingLists";
 import { STOCKS } from "./constants";
 import { Route, Routes, NavLink } from "react-router-dom";
@@ -13,7 +13,8 @@ import { RiStockFill } from "react-icons/ri";
 import { IoCashOutline } from "react-icons/io5";
 import { RiBillLine } from "react-icons/ri";
 import { MdLooksOne } from "react-icons/md";
-import SampleProvider, { SampleContext } from "../contexts/SampleContext";
+import SampleProvider from "../contexts/SampleContext";
+import FormikComponent from "./FormikComponent";
 
 function App() {
   const [stocks, setStocks] = useState(STOCKS);
@@ -59,28 +60,17 @@ function App() {
       component: <BillingList stocks={stocks} />,
       icon: <RiBillLine />,
     },
+
+    {
+      title: "Formik Component",
+      path: "/formik",
+      key: "formik",
+      component: <FormikComponent setStocks={setStocks} stocks={stocks} />,
+    },
   ];
 
   return (
     <div className="App">
-      {/* <input
-        id="whatToShow"
-        name="whatToShow"
-        value={whatToShow}
-        onChange={(e) => setWhatToShow(e.target.value)}
-      /> */}
-
-      {/* <span>
-        {BUTTONS.map((a) => (
-          <button
-            key={a.key}
-            onClick={(e) => setWhatToShow(a.key)}
-            className={a.key === whatToShow ? "selected" : ""}
-          >
-            {a.title}
-          </button>
-        ))}
-      </span> */}
       <div className="body">
         <div id="sidebar">
           {BUTTONS.map((a) => (
@@ -90,7 +80,7 @@ function App() {
           ))}
         </div>
         <div className="main-container">
-          <SampleProvider value={{ test: "Sample text" }}>
+          <SampleProvider>
             <Routes>
               {BUTTONS.map((a) => (
                 <Route path={a.path} key={a.key} element={a.component} />
