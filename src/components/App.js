@@ -15,9 +15,13 @@ import { RiBillLine } from "react-icons/ri";
 import { MdLooksOne } from "react-icons/md";
 import SampleProvider from "../contexts/SampleContext";
 import FormikComponent from "./FormikComponent";
+import Phone from "./Phone";
+import { CiMenuKebab, CiMobile3 } from "react-icons/ci";
+import { SiVitest } from "react-icons/si";
 
 function App() {
   const [stocks, setStocks] = useState(STOCKS);
+  const [isOpen, setIsOpen] = useState(false);
 
   const BUTTONS = [
     {
@@ -48,7 +52,7 @@ function App() {
     },
     {
       title: "Cash Flow Calc",
-      path: "/cashFlow",
+      path: "/",
       key: "cashFlow",
       component: <CashFlowCalculator />,
       icon: <IoCashOutline />,
@@ -65,7 +69,16 @@ function App() {
       title: "Formik Component",
       path: "/formik",
       key: "formik",
+      icon: <SiVitest />,
       component: <FormikComponent setStocks={setStocks} stocks={stocks} />,
+    },
+
+    {
+      title: "Phone",
+      key: "phone",
+      path: "/phone",
+      icon: <CiMobile3 />,
+      component: <Phone />,
     },
   ];
 
@@ -73,11 +86,21 @@ function App() {
     <div className="App">
       <div className="body">
         <div id="sidebar">
-          {BUTTONS.map((a) => (
-            <NavLink to={a.path} key={a.key} className="sidebar-option">
-              {a.title}
-            </NavLink>
-          ))}
+          <div>
+            {BUTTONS.map((a) => (
+              <NavLink to={a.path} key={a.key} className="sidebar-option">
+                {a.title}
+                {a.icon}
+              </NavLink>
+            ))}
+          </div>
+          {/* <div>
+            <button onClick={() => setIsOpen(!isOpen)}>
+              <CiMenuKebab />
+            </button>
+            {isOpen && (
+            )}
+          </div> */}
         </div>
         <div className="main-container">
           <SampleProvider>
