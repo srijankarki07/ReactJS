@@ -1,9 +1,7 @@
 import { useContext, useEffect, useRef, useState } from "react";
-import { STOCKS } from "./constants";
 import "./App.css";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import { toast } from "react-toastify";
-import { SampleContext } from "../contexts/SampleContext";
 import { useFormik } from "formik";
 import { stockSchema } from "./stockSchema";
 
@@ -27,9 +25,6 @@ const FormikComponent = ({ setStocks, stocks }) => {
       alert(JSON.stringify(formik.values));
     },
   });
-
-  const testTheProvider = useContext(SampleContext);
-  //   console.log(SampleContext, "check for Nepse Stocks");
 
   const [foundStocks, setFoundStocks] = useState(stocks);
 
@@ -86,24 +81,13 @@ const FormikComponent = ({ setStocks, stocks }) => {
     );
   }, [searchStock]);
 
-  const symbolRef = useRef(null);
-  const securityIdRef = useRef(null);
-  const securityNameRef = useRef(null);
-
-  //   console.log(symbolRef, securityIdRef, securityNameRef, "check refs");
-
-  const handlePressEnterAtSymbol = (e) => {
-    if (e.code === "Enter") {
-      handleAddUpdateStocks(e);
-      symbolRef.current?.focus();
-    }
-  };
   console.log(formik, "formik");
   return (
     <div id="stocks">
       <h1> List of Nepse Stocks</h1>
       <h4>Total Stocks :{stocks.length}</h4>
-      <form onSubmit={formik.handleSubmit}>
+      {/* <form onSubmit={formik.handleSubmit}> */}
+      <form>
         <label htmlFor="securityId">Security Id</label>
 
         <input
@@ -142,6 +126,7 @@ const FormikComponent = ({ setStocks, stocks }) => {
           type="text"
           className="inputbox"
           placeholder="Enter Symbol"
+          maxLength="3"
           onChange={formik.handleChange}
           value={formik.values.symbol}
           onBlur={formik.handleBlur}

@@ -1,10 +1,17 @@
-import { object, string, number, date, InferType } from "yup";
+import { object, string, number, date } from "yup";
 
 export const phoneSchema = object({
-  model: string().required("Please Enter the Model Number"),
   Name: string().required("Please Enter the Name of your Phone"),
-  RAM: number().required("Enter RAM"),
-  storage: number().required("Storage is required"),
+  model: string()
+    .required("Please Enter the Model Number")
+    .matches(/^[A-Z]$/, "Only Caps Allowed"),
+  RAM: number().required("Enter RAM").positive("Negative"),
+  storage: number()
+    .required("Storage is required")
+    .positive("Can't be negative"),
+  battery: number()
+    .positive("Can't be negative")
+    .required("This field can't be empty"),
   price: number()
     .required("Enter the price of phone")
     .positive("Price is never negative"),
