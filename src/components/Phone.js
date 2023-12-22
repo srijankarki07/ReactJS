@@ -1,10 +1,30 @@
-import { React } from "react";
+import { React, useEffect, useState } from "react";
 import { useFormik } from "formik";
-import { phoneSchema } from "./PhoneSchema";
+import { phoneSchema } from "./phoneSchema";
+import axios from "axios";
+import { toast } from "react-toastify";
+import { ScrollToFieldError } from "./ScrollToFieldError";
 const Phone = () => {
+  const handleFormSubmit = async (values) => {
+    try {
+      const response = await axios({
+        method: "post",
+        url: process.env.REACT_APP_BACKEND_URL + "/phone/add",
+        data: values,
+      });
+
+      console.log(response, "check");
+      toast.success("Phone Added !");
+      formik.resetForm();
+    } catch (err) {
+      console.log(err);
+      toast.error("Phone Entry Error");
+    }
+  };
+
   const formik = useFormik({
     initialValues: {
-      Name: "",
+      name: "",
       model: "",
       RAM: "",
       storage: "",
@@ -14,11 +34,27 @@ const Phone = () => {
       price: "",
     },
     validationSchema: phoneSchema,
-    onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
-    },
+    onSubmit: (values) => handleFormSubmit(values),
   });
-
+  console.log(process.env.REACT_APP_BACKEND_URL, formik.errors, "test url");
+  const [phones, setPhones] = useState([]);
+  useEffect(() => {
+    const getPhonesList = async () => {
+      try {
+        const response = await axios({
+          method: "get",
+          url: process.env.REACT_APP_BACKEND_URL + "/phone",
+        });
+        console.log(response, "check");
+        setPhones(response.data);
+        formik.resetForm();
+      } catch (err) {
+        console.log(err);
+        toast.error("Phone Listing error  ");
+      }
+    };
+    getPhonesList();
+  }, [formik.submitCount]);
   return (
     <div className="form">
       <form>
@@ -27,18 +63,19 @@ const Phone = () => {
           <label className="input-label" htmlFor="name">
             Name
           </label>
+
           <input
             className="input-box"
             id="name"
             name="name"
-            type="text"
+            type="string"
             placeholder="Name"
             onChange={formik.handleChange}
-            value={formik.values.Name}
+            value={formik.values.name}
             onBlur={formik.handleBlur}
           />
-          {formik.touched.Name && formik.errors.Name && (
-            <span className="form-error">{formik.errors.Name}</span>
+          {formik.touched.name && formik.errors.name && (
+            <span className="form-error">{formik.errors.name}</span>
           )}
 
           <label className="input-label" htmlFor="model">
@@ -119,7 +156,7 @@ const Phone = () => {
             className="input-box"
             id="color"
             name="color"
-            type="text"
+            type="string"
             placeholder="Color"
             onChange={formik.handleChange}
             value={formik.values.color}
@@ -136,7 +173,7 @@ const Phone = () => {
             className="input-box"
             id="year"
             name="year"
-            type="number"
+            type="date"
             placeholder="Year"
             onChange={formik.handleChange}
             value={formik.values.year}
@@ -164,6 +201,7 @@ const Phone = () => {
             <span className="form-error">{formik.errors.price}</span>
           )}
         </div>
+        <ScrollToFieldError formik={formik} />
       </form>
       <button onClick={formik.handleSubmit}>Add Phone</button>
 
