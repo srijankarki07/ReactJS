@@ -14,12 +14,12 @@ const Div = styled.div`
     border-radius: 5px;
     padding: 2px 10px;
     margin-bottom: 4px;
-    border: 2px solid red;
+    border: ${(props) => (props.error ? "2px solid red" : "1px solid black")};
   }
 `;
-const MyInput = (label, id, error, ...restProps) => {
+const MyInput = ({ label, id, error, ...restProps }) => {
   return (
-    <Div>
+    <Div error={error}>
       <label htmlFor={id}>{label}</label>
 
       <input id={id} {...restProps} />
