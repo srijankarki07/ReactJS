@@ -14,7 +14,7 @@ const Div = styled.div`
     border-radius: 5px;
     padding: 2px 10px;
     margin-bottom: 4px;
-    border: ${(props) => (props.error ? "2px solid red" : "1px solid black")};
+    border: ${({ error }) => (error ? "2px solid red" : "1px solid black")};
   }
 `;
 const MyInput = ({ label, id, error, ...restProps }) => {
