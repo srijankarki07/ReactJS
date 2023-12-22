@@ -1,10 +1,8 @@
 import { object, string, number, date } from "yup";
 
 export const phoneSchema = object({
-  Name: string().required("Please Enter the Name of your Phone"),
-  model: string()
-    .required("Please Enter the Model Number")
-    .matches(/^[A-Z]$/, "Only Caps Allowed"),
+  name: string().required("Please Enter the Name of your Phone"),
+  model: string().required("Please Enter the Model Number"),
   RAM: number().required("Enter RAM").positive("Negative"),
   storage: number()
     .required("Storage is required")
@@ -16,5 +14,5 @@ export const phoneSchema = object({
     .required("Enter the price of phone")
     .positive("Price is never negative"),
   color: string().required("Enter color of your phone"),
-  year: date().required("Enter your phone make year").min(4, "Error"),
+  year: date().required("Enter your phone make year"),
 });

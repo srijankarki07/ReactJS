@@ -1,10 +1,9 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { useReducer, useState } from "react";
 import "./App.css";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import { toast } from "react-toastify";
 import { useFormik } from "formik";
 import { stockSchema } from "./stockSchema";
-
 const FormikComponent = ({ setStocks, stocks }) => {
   const [securityName, setSecurityName] = useState("");
   const [securityId, setSecurityId] = useState("");
@@ -26,7 +25,7 @@ const FormikComponent = ({ setStocks, stocks }) => {
     },
   });
 
-  const [foundStocks, setFoundStocks] = useState(stocks);
+  const [foundStocks, setFoundStocks] = useReducer(stocks);
 
   const handleAddUpdateStocks = (e) => {
     if ([securityId, securityName, symbol].some((s) => s === "")) {
@@ -68,18 +67,6 @@ const FormikComponent = ({ setStocks, stocks }) => {
     setConfirmDelete(false);
     toast.success("Your Stock is Successfully Deleted");
   };
-  useEffect(() => {
-    setFoundStocks(
-      stocks.filter((s) =>
-        [s.securityId, s.securityName, s.symbol].some(
-          (x) => x.toLowerCase().includes(searchStock.toLowerCase())
-          /* s.securityName.toLowerCase().includes(searchStock.toLowerCase()) ||
-          s.securityId.toLowerCase().includes(searchStock.toLowerCase()) ||
-          s.symbol.toLowerCase().includes(searchStock.toLowerCase())*/
-        )
-      )
-    );
-  }, [searchStock]);
 
   console.log(formik, "formik");
   return (
