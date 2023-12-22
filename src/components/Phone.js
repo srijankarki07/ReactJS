@@ -165,9 +165,33 @@ const Phone = () => {
           )}
         </div>
       </form>
-      <button className="add" id="add" type="submit">
-        Submit
-      </button>
+      <button onClick={formik.handleSubmit}>Add Phone</button>
+
+      <h2>Phone's List ({phones.length})</h2>
+      <div className="phone-list">
+        <div className="phone-heading">
+          <span className="name">Name</span>
+          <span className="model">Model</span>
+          <span className="RAM">RAM</span>
+          <span className="storage">Storage</span>
+          <span className="battery">Battery Capacity</span>
+          <span className="color">Color</span>
+          <span className="price">Price</span>
+        </div>
+
+        {phones.map((phone) => (
+          <div key={phone._id} className="phone-info">
+            <span className="name">{phone.name}</span>
+            <span className="model">{phone.model} </span>
+            <span className="RAM">{phone.RAM} GB</span>
+            <span className="storage">{phone.storage} GB</span>
+            <span className="battery">{phone.battery} mAh</span>
+
+            <span className="color">{phone.color}</span>
+            <span className="year">{phone.year}</span>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
