@@ -86,21 +86,20 @@ function App() {
     <div className="App">
       <div className="body">
         <div id="sidebar">
-          <div>
-            {BUTTONS.map((a) => (
-              <NavLink to={a.path} key={a.key} className="sidebar-option">
-                {a.title}
-                {a.icon}
-              </NavLink>
-            ))}
-          </div>
-          {/* <div>
-            <button onClick={() => setIsOpen(!isOpen)}>
-              <CiMenuKebab />
-            </button>
-            {isOpen && (
-            )}
-          </div> */}
+          <button onClick={() => setIsOpen(!isOpen)} className="toggle">
+            <CiMenuKebab />
+          </button>
+          {isOpen && (
+            <div>
+              {BUTTONS.map((a) => (
+                <NavLink to={a.path} key={a.key} className="sidebar-option">
+                  {a.title}
+                  {a.icon}
+                </NavLink>
+              ))}
+            </div>
+          )}
+          <div></div>
         </div>
         <div className="main-container">
           <SampleProvider>
