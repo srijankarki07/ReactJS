@@ -66,7 +66,7 @@
   flex-basis: 10%;
 }
 
-/* .delete-modal-container {
+.delete-modal-container {
   position: fixed;
   width: 100%;
   height: 100%;
@@ -75,13 +75,13 @@
   justify-content: center;
   top: 0;
   background-color: #ffffff73;
-} */
+}
 
-/* .delete-modal-container .modal-body {
+.delete-modal-container .modal-body {
   background-color: rgb(5, 48, 34);
   padding: 15px 30px;
   border-radius: 8px;
-} */
+}
 
 .inputbox {
   border-radius: 8px;
@@ -550,4 +550,64 @@ styled.section .container {
   .add {
     padding: 0 2.6rem;
   }
+}
+
+.phone-list {
+  background-color: rgb(30, 125, 123);
+  width: 90%;
+}
+
+.phone-info {
+  color: #020501;
+  display: flex;
+  flex-direction: row;
+  text-align: left;
+}
+.phone-heading {
+  color: #f5ebe6;
+  background-color: #3f7d1e;
+
+  display: flex;
+  flex-direction: row;
+  text-align: left;
+  font-size: 1.4rem;
+}
+
+.phone-list .name {
+  text-align: center;
+  flex-basis: 15%;
+}
+
+.phone-list .model {
+  text-align: center;
+  flex-basis: 10%;
+}
+
+.phone-list .RAM {
+  flex-basis: 10%;
+  text-align: center;
+}
+
+.phone-list .storage {
+  text-align: center;
+  flex-basis: 10%;
+}
+
+.phone-list .battery {
+  flex-basis: 20%;
+  text-align: center;
+}
+
+.phone-list .color {
+  flex-basis: 20%;
+  text-align: center;
+}
+.phone-list .year {
+  flex-basis: 15%;
+  text-align: center;
+}
+
+.phone-list .price {
+  flex-basis: 15%;
+  text-align: center;
 }

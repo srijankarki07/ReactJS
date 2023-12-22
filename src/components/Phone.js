@@ -1,9 +1,12 @@
-import { React, useEffect, useState } from "react";
+import { React, useEffect, useRef, useState } from "react";
 import { useFormik } from "formik";
 import { phoneSchema } from "./phoneSchema";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { MdDelete } from "react-icons/md";
+
 import { ScrollToFieldError } from "./ScrollToFieldError";
+import { FaEdit } from "react-icons/fa";
 const Phone = () => {
   const handleFormSubmit = async (values) => {
     try {
@@ -21,6 +24,53 @@ const Phone = () => {
       toast.error("Phone Entry Error");
     }
   };
+  const handleDeletePhone = (id) => async (e) => {
+    setCalling(true);
+    try {
+      const response = await axios({
+        method: "delete",
+        url: process.env.REACT_APP_BACKEND_URL + `/phone/${id}`,
+      });
+
+      console.log(response, "check");
+      toast.success("Phone Deleted !");
+      formik.resetForm();
+      setCalling(false);
+      setConfirmDelete(false);
+    } catch (err) {
+      console.log(err);
+      toast.error("Phone Deleting Error");
+      setCalling(false);
+    }
+  };
+  const nameRef = useRef(null);
+  const modelRef = useRef(null);
+  const RAMRef = useRef(null);
+  const storageRef = useRef(null);
+  const batteryRef = useRef(null);
+  const colorRef = useRef(null);
+  const yearRef = useRef(null);
+  const priceRef = useRef(null);
+
+  const [calling, setCalling] = useState(false);
+  const [selectedPhone, setSelectedPhone] = useState(false);
+  const [confirmDelete, setConfirmDelete] = useState(false);
+  const [editMode, setEditMode] = useState(false);
+  // const [foundPhone, setFoundPhone] = useState(Phone);
+
+  // const handleDeletePhone = (e) => {
+  //   setPhones(phones.filter((s) => s.model !== selectedPhone.model));
+  //   setFoundPhone(phones.filter((s) => s.model !== selectedPhone.model));
+  //   setSelectedPhone(null);
+  //   setConfirmDelete(false);
+  //   toast.success("Your Phone is Successfully Deleted");
+  // };
+
+  //  const handlePressEnterAtPrice = (e) => {
+  //   if (e.code === "Enter") {
+  //     formik.handleChange
+  //     priceRef.current?.focus();
+  //   }
 
   const formik = useFormik({
     initialValues: {
@@ -57,6 +107,13 @@ const Phone = () => {
   }, [formik.submitCount]);
   return (
     <div className="form">
+      {confirmDelete && (
+        <div className="modal-body">
+          <p>Are you sure you want to delete{selectedPhone.model}?</p>
+          <button onClick={handleDeletePhone(selectedPhone._id)}>Delete</button>
+          <button onClick={(e) => setConfirmDelete(false)}> Cancel </button>
+        </div>
+      )}
       <form>
         <h1>Phone Registration</h1>
         <div className="input-block">
@@ -73,6 +130,10 @@ const Phone = () => {
             onChange={formik.handleChange}
             value={formik.values.name}
             onBlur={formik.handleBlur}
+            ref={nameRef}
+            onKeyUp={(e) =>
+              e.code === "Enter" ? modelRef.current?.focus() : void 0
+            }
           />
           {formik.touched.name && formik.errors.name && (
             <span className="form-error">{formik.errors.name}</span>
@@ -92,6 +153,10 @@ const Phone = () => {
             onChange={formik.handleChange}
             value={formik.values.model}
             onBlur={formik.handleBlur}
+            ref={modelRef}
+            onKeyUp={(e) =>
+              e.code === "Enter" ? RAMRef.current?.focus() : void 0
+            }
           />
           {formik.touched.model && formik.errors.model && (
             <span className="form-error">{formik.errors.model}</span>
@@ -109,6 +174,10 @@ const Phone = () => {
             onChange={formik.handleChange}
             value={formik.values.RAM}
             onBlur={formik.handleBlur}
+            ref={RAMRef}
+            onKeyUp={(e) =>
+              e.code === "Enter" ? storageRef.current?.focus() : void 0
+            }
           />
           {formik.touched.RAM && formik.errors.RAM && (
             <span className="form-error">{formik.errors.RAM}</span>
@@ -126,6 +195,10 @@ const Phone = () => {
             onChange={formik.handleChange}
             value={formik.values.storage}
             onBlur={formik.handleBlur}
+            ref={storageRef}
+            onKeyUp={(e) =>
+              e.code === "Enter" ? batteryRef.current?.focus() : void 0
+            }
           />
           {formik.touched.storage && formik.errors.storage && (
             <span className="form-error">{formik.errors.storage}</span>
@@ -143,6 +216,10 @@ const Phone = () => {
             onChange={formik.handleChange}
             value={formik.values.battery}
             onBlur={formik.handleBlur}
+            ref={batteryRef}
+            onKeyUp={(e) =>
+              e.code === "Enter" ? colorRef.current?.focus() : void 0
+            }
           />
           {formik.touched.battery && formik.errors.battery && (
             <span className="form-error">{formik.errors.battery}</span>
@@ -161,6 +238,10 @@ const Phone = () => {
             onChange={formik.handleChange}
             value={formik.values.color}
             onBlur={formik.handleBlur}
+            ref={colorRef}
+            onKeyUp={(e) =>
+              e.code === "Enter" ? yearRef.current?.focus() : void 0
+            }
           />
           {formik.touched.color && formik.errors.color && (
             <span className="form-error">{formik.errors.color}</span>
@@ -178,6 +259,10 @@ const Phone = () => {
             onChange={formik.handleChange}
             value={formik.values.year}
             onBlur={formik.handleBlur}
+            ref={yearRef}
+            onKeyUp={(e) =>
+              e.code === "Enter" ? priceRef.current?.focus() : void 0
+            }
           />
           {formik.touched.year && formik.errors.year && (
             <span className="form-error">{formik.errors.year}</span>
@@ -196,6 +281,8 @@ const Phone = () => {
             onChange={formik.handleChange}
             value={formik.values.price}
             onBlur={formik.handleBlur}
+            ref={priceRef}
+            // onKeyUp={handlePressEnterAtQuantity}
           />
           {formik.touched.price && formik.errors.price && (
             <span className="form-error">{formik.errors.price}</span>
@@ -214,6 +301,7 @@ const Phone = () => {
           <span className="storage">Storage</span>
           <span className="battery">Battery Capacity</span>
           <span className="color">Color</span>
+          <span className="year">Year</span>
           <span className="price">Price</span>
         </div>
 
@@ -224,9 +312,26 @@ const Phone = () => {
             <span className="RAM">{phone.RAM} GB</span>
             <span className="storage">{phone.storage} GB</span>
             <span className="battery">{phone.battery} mAh</span>
-
             <span className="color">{phone.color}</span>
             <span className="year">{phone.year}</span>
+            <span className="price">{phone.price}</span>
+
+            <div className="edit" title="Edit">
+              <FaEdit
+                onClick={(e) => {
+                  setEditMode(true);
+                  formik.setValues({ ...phone });
+                }}
+              />
+            </div>
+            <div className="delete" title="Delete">
+              <MdDelete
+                onClick={(e) => {
+                  setSelectedPhone(phone);
+                  setConfirmDelete(true);
+                }}
+              />
+            </div>
           </div>
         ))}
       </div>
