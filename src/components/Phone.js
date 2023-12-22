@@ -4,7 +4,6 @@ import { phoneSchema } from "./phoneSchema";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { MdDelete } from "react-icons/md";
-
 import { ScrollToFieldError } from "./ScrollToFieldError";
 import { FaEdit } from "react-icons/fa";
 const Phone = () => {
@@ -52,19 +51,13 @@ const Phone = () => {
   const yearRef = useRef(null);
   const priceRef = useRef(null);
 
+  const [focused, setFocused] = useState(false);
+  const [phones, setPhones] = useState([]);
   const [calling, setCalling] = useState(false);
   const [selectedPhone, setSelectedPhone] = useState(false);
   const [confirmDelete, setConfirmDelete] = useState(false);
   const [editMode, setEditMode] = useState(false);
   // const [foundPhone, setFoundPhone] = useState(Phone);
-
-  // const handleDeletePhone = (e) => {
-  //   setPhones(phones.filter((s) => s.model !== selectedPhone.model));
-  //   setFoundPhone(phones.filter((s) => s.model !== selectedPhone.model));
-  //   setSelectedPhone(null);
-  //   setConfirmDelete(false);
-  //   toast.success("Your Phone is Successfully Deleted");
-  // };
 
   //  const handlePressEnterAtPrice = (e) => {
   //   if (e.code === "Enter") {
@@ -86,8 +79,7 @@ const Phone = () => {
     validationSchema: phoneSchema,
     onSubmit: (values) => handleFormSubmit(values),
   });
-  console.log(process.env.REACT_APP_BACKEND_URL, formik.errors, "test url");
-  const [phones, setPhones] = useState([]);
+  // console.log(process.env.REACT_APP_BACKEND_URL, formik.errors, "test url");
   useEffect(() => {
     const getPhonesList = async () => {
       try {
@@ -107,15 +99,8 @@ const Phone = () => {
   }, [formik.submitCount]);
   return (
     <div className="form">
-      {confirmDelete && (
-        <div className="modal-body">
-          <p>Are you sure you want to delete{selectedPhone.model}?</p>
-          <button onClick={handleDeletePhone(selectedPhone._id)}>Delete</button>
-          <button onClick={(e) => setConfirmDelete(false)}> Cancel </button>
-        </div>
-      )}
+      <h1 className="heading">Phone Registration</h1>
       <form>
-        <h1>Phone Registration</h1>
         <div className="input-block">
           <label className="input-label" htmlFor="name">
             Name
@@ -292,21 +277,31 @@ const Phone = () => {
       </form>
       <button onClick={formik.handleSubmit}>Add Phone</button>
 
-      <h2>Phone's List ({phones.length})</h2>
+      {confirmDelete && (
+        <div className="modal-body">
+          <p>Are you sure you want to delete {selectedPhone.name}?</p>
+          <button onClick={handleDeletePhone(selectedPhone._id)}>Delete</button>
+          <button onClick={(e) => setConfirmDelete(false)}> Cancel </button>
+        </div>
+      )}
+
+      <h2 className="heading">List of Phones [{phones.length}]</h2>
       <div className="phone-list">
         <div className="phone-heading">
+          <span className="index">SN</span>
           <span className="name">Name</span>
           <span className="model">Model</span>
           <span className="RAM">RAM</span>
           <span className="storage">Storage</span>
-          <span className="battery">Battery Capacity</span>
+          <span className="battery">Battery</span>
           <span className="color">Color</span>
           <span className="year">Year</span>
           <span className="price">Price</span>
         </div>
 
-        {phones.map((phone) => (
+        {phones.map((phone, index) => (
           <div key={phone._id} className="phone-info">
+            <span className="index">{index + 1}</span>
             <span className="name">{phone.name}</span>
             <span className="model">{phone.model} </span>
             <span className="RAM">{phone.RAM} GB</span>
